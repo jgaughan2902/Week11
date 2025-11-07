@@ -5,14 +5,31 @@ import time
 import pandas as pd
 
 def kmeans(X, k):
+    '''
+    Performs k-means clustering on X.
 
+    Parameters:
+    X (np.array): A numerical array.
+    k (int): The number of clusters you want.
+
+    Return value:
+    (centroids, labels) (tuple): A tuple containing
+    a 2D array of the cluster centroids and a 1D array
+    of the index of the assigned cluster for each row in X.
+    '''
+    # Create a variable from the desired cluster input.
     num_clusters = k
 
+    # Create an object using the KMeans built-in function.
     km = KMeans(n_clusters = num_clusters, n_init = 'auto')
+
+    # Fit using the numerical array input.
     km.fit(X)
 
+    # Define the centroids using a built in method.
     centroids = km.cluster_centers_
 
+    # Define the labels using a built in method.
     labels = km.labels_
 
     return (centroids, labels)
