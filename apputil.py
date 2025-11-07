@@ -34,16 +34,32 @@ def kmeans(X, k):
 
     return (centroids, labels)
 
-# Globally accessible
+# Load the diamonds data set and make it globally accessible.
 diamonds = sns.load_dataset("diamonds")
 
+# Find only the numerical columns in the diamonds data set
+# and make it globally available.
 numerical_cols = diamonds.select_dtypes(include = ['number']).columns
 
 def kmeans_diamonds(n, k):
-    
-    subset = diamonds.head(n)
+    '''
+    Runs the kmeans function to create k clusters
+    on the first n rows of the numeric diamonds dataset.
 
-    X = subset[numerical_cols].values
+    Parameters:
+    n (int): The desired amount of rows.
+    k (int): The number of clusters you want.
+
+    Return value:
+    (centroids, labels) (tuple): A tuple containing
+    a 2D array of the cluster centroids and a 1D array
+    of the index of the assigned cluster for each row in X.
+    '''
+    # Define a subset containing only the 
+    #subset = diamonds.head(n)
+    subset = numerical_cols.head(n)
+
+    X = subset.values
 
     centroids, labels = kmeans(X, k)
 
